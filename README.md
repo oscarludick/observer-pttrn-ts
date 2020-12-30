@@ -4,4 +4,4 @@ The observer pattern defines a one-to-many dependency between objects so that wh
 all of its dependents are notified and updated automatically.
 
 
-* This definition was obtained from the book Head First Desing Patterns *
+*This definition was obtained from the book Head First Desing Patterns*

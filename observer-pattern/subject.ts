@@ -7,18 +7,22 @@ export abstract class Subject<T> implements IObservable<T>, IState<T> {
     this.observers.push(observer);
   }
 
+  removeObserver(observer: IObserver<T>): void {
+    //remove observer from array
+  }
+
   notify(): void {
     this.observers.forEach(observer => {
       observer.update();
     });
   }
 
-  getState(): T {
-    return this.state;
-  }
-
   setState(state: T) {
     this.state = state;
     this.notify();
+  }
+
+  getState(): T {
+    return this.state;
   }
 }

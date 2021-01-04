@@ -1,4 +1,4 @@
 interface IObserver<T> {
-  subject: Subject<T>;
+  subject: IObservable<T>;
   update(): void;
 }

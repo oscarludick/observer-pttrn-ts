@@ -7,8 +7,6 @@ Loose Coupling. When two objects are loosely coupled, they can interact, but hav
 The Observer Pattern provides an object design where subjects and observers are loosely coupled.
 
 
-Loosely coupled desings allow us to build  flexible OO systems
-
 ### Desing principles
 
 * Strive for loosely coupled designs between objects that interact.

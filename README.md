@@ -13,14 +13,15 @@ The observer pattern consists of SUBJECTS and OBSERVERS. The subject and the obs
 
 Loose Coupling. When two objects are loosely coupled, they can interact, but have very little knowledge of each other.
 
-The only thing the subject knows about an observer is that implements a certain interface (the observer interface). It doesn't need to know the concrete class of the observer, what it does, or anything else about it. Also we can do:
+Observer Pattern provides an object design where subjects and observers are loosely coupled because:
 
+* The only thing the subject knows about an observer is that implements a certain interface (the observer interface). It doesn't need to know the concrete class of the observer, what it does, or anything else about it.
 * Add new observers at any time.
 * Never need to modify the subject to ad new types of observers.
 * Reuse subjects or observers independetly of each other.
 * Changes to either the subject or and observer will not affect the other.
 
-That is why the Observer Pattern provides an object design where subjects and observers are loosely coupled.
+That is why the 
 
 Loosely coupled desings allow us to build flexible OO systems that can handle change because they minimize the interdependency between objects.
 

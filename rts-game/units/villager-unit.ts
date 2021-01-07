@@ -4,7 +4,7 @@ import { IObserver } from "../observer";
 import { PlayerActions } from "../player-actions";
 
 export class VillagerUnit implements IObserver<string> {
-  observable: Observable;
+  observable: Observable<string>;
 
   constructor(observable: Observable<string>) {
     this.observable = observable;

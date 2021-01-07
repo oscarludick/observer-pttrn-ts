@@ -3,6 +3,10 @@ import { Observable } from "./observable";
 export class PlayerActions extends Observable<string> {
   private _currentAction: string;
 
+  constructor() {
+    super();
+  }
+
   moveUnits(action: string): void {
     this._currentAction = action;
     this.setChanged();

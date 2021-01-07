@@ -14,5 +14,7 @@ player.moveUnits("2 steps North");
 player.moveUnits("3 steps East");
 
 soldier1.unselect();
+villager2.unselect();
+console.log("");
 
 player.moveUnits("2 steps South");

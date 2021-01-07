@@ -1,6 +1,6 @@
-import { Subject } from "../observer-pattern/observable-subject/subject";
+import { Observable } from "./observable";
 
-export class PlayerActions extends Subject<string> {
+export class PlayerActions extends Observable<string> {
   private _currentAction: string;
 
   moveUnits(action: string): void {

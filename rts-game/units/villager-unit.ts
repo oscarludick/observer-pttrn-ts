@@ -1,14 +1,12 @@
 import { Observable } from "../observable";
-import { IObserver } from "../observer";
+import { Observer } from "../observer";
 
 import { PlayerActions } from "../player-actions";
+import { Unit } from "./a-unit";
 
-export class VillagerUnit implements IObserver<string> {
-  observable: Observable<string>;
-
+export class VillagerUnit extends Observer<string> implements Unit {
   constructor(observable: Observable<string>) {
-    this.observable = observable;
-    this.observable.addObserver(this);
+    super(observable);
   }
 
   update(observable: Observable<string>, arg: string) {
@@ -18,11 +16,11 @@ export class VillagerUnit implements IObserver<string> {
     }
   }
 
-  unselect(): void {
-    this.observable.removeObserver(this);
-  }
-
   move(action: string): void {
     console.log(`Moving Villager Unit : ${action}`);
+  }
+
+  unselect(): void {
+    this.remove();
   }
 }

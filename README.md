@@ -27,3 +27,114 @@ Loosely coupled desings allow us to build flexible OO systems that can handle ch
 
 The observer pattern defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.
 
+### The RTS Player/Units Example
+
+The PlayerActions class extends from the Observable class, also know as the Subject class.
+
+```ts
+export class PlayerActions extends Observable<string> {
+  private _currentAction: string;
+
+  constructor() {
+    super();
+  }
+
+  moveUnits(action: string): void {
+    this._currentAction = action;
+    this.setChanged();
+    this.notifyObservers();
+  }
+
+  get action() {
+    return this._currentAction;
+  }
+}
+```
+
+The Observable class will keep track of the observers and manage their registration or removal.
+
+```ts
+export abstract class Observable<T> {
+  observers: IObserver<T>[] = [];
+  changed: boolean = false;
+
+  addObserver(observer: IObserver<T>): void {
+    this.observers.push(observer);
+  }
+
+  removeObserver(observer: IObserver<T>): void {
+    this.observers = this.observers.filter(mObserver => mObserver !== observer);
+  }
+
+  notifyObservers(arg: T = null): void {
+    if (this.changed) {
+      this.observers.forEach(observer => observer.update(this, arg));
+      this.changed = false;
+    }
+  }
+
+  setChanged(): void {
+    this.changed = true;
+  }
+}
+```
+
+The units implements the Observer interface so our two objects become loosely coupled.
+
+```ts
+export class SoldierUnit implements IObserver<string> {
+  observable: Observable<string>;
+
+  constructor(observable: Observable<string>) {
+    this.observable = observable;
+    this.observable.addObserver(this);
+  }
+
+  update(observable: Observable<string>, arg: string) {
+    if (observable instanceof PlayerActions) {
+      const action = arg === null ? (observable as PlayerActions).action : arg;
+      this.move(action);
+    }
+  }
+
+  unselect(): void {
+    this.observable.removeObserver(this);
+  }
+
+  move(action: string): void {
+    console.log(`Moving Soldier Unit : ${action}`);
+  }
+}
+```
+
+The result
+
+```ts
+const player = new PlayerActions();
+
+const villager1 = new VillagerUnit(player);
+const villager2 = new VillagerUnit(player);
+
+const soldier1 = new SoldierUnit(player);
+const soldier2 = new SoldierUnit(player);
+
+player.moveUnits("2 steps North");
+player.moveUnits("3 steps East");
+
+soldier1.unselect();
+villager2.unselect();
+console.log("");
+
+player.moveUnits("2 steps South");
+```
+
+
+```bash
+Moving Villager Unit : 3 steps East
+Moving Villager Unit : 3 steps East
+Moving Soldier Unit : 3 steps East
+Moving Soldier Unit : 3 steps East
+
+Moving Villager Unit : 2 steps South
+Moving Soldier Unit : 2 steps South
+```

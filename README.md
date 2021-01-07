@@ -19,7 +19,7 @@ Observer Pattern provides an object design where subjects and observers are loos
 * Add new observers at any time.
 * Never need to modify the subject to ad new types of observers.
 * Reuse subjects or observers independetly of each other.
-* Changes to either the subject or and observer will not affect the other.
+* Changes to either the subject or an observer will not affect the other.
 
 That is why the 
 

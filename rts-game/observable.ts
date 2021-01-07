@@ -1,4 +1,7 @@
-export abstract class Subject<T> implements IObservable<T> {
+/**
+ * Also known as Subject
+ */
+export abstract class Observable<T> {
   observers: IObserver<T>[] = [];
   changed: boolean = false;
 
@@ -10,7 +13,7 @@ export abstract class Subject<T> implements IObservable<T> {
     this.observers = this.observers.filter(mObserver => mObserver !== observer);
   }
 
-  notifyObservers(): void {
+  notifyObservers(arg: T = null): void {
     if (this.changed) {
       this.observers.forEach(observer => observer.update(this));
       this.changed = false;

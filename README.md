@@ -25,5 +25,5 @@ Loosely coupled desings allow us to build flexible OO systems that can handle ch
 
 ### In resume
 
-The observer pattern defines a one-to-many dependency between objects so that when one object changes state,all of its dependents are notified and updated automatically.
+The observer pattern defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.
 

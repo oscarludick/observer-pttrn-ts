@@ -3,21 +3,26 @@ import { IObserver } from "../observer";
 
 import { PlayerActions } from "../player-actions";
 
-type actionType = string;
+export class VillagerUnit implements IObserver<string> {
+  observable: Observable;
 
-export class VillagerUnits implements IObserver<actionType> {
-  constructor(observable: Observable<actionType>) {
-    observable.addObserver(this);
+  constructor(observable: Observable<string>) {
+    this.observable = observable;
+    this.observable.addObserver(this);
   }
 
-  update(observable: Observable<actionType>, arg: actionType) {
+  update(observable: Observable<string>, arg: string) {
     if (observable instanceof PlayerActions) {
       const action = arg === null ? (observable as PlayerActions).action : arg;
       this.move(action);
     }
   }
 
+  unselect(): void {
+    this.observable.removeObserver(this);
+  }
+
   move(action: string): void {
-    console.log(`Moving Villager Units : ${action}`);
+    console.log(`Moving Villager Unit : ${action}`);
   }
 }

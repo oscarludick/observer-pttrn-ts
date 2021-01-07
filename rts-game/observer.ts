@@ -9,7 +9,8 @@ export abstract class Observer<T> {
   }
 
   abstract update(observable: Observable<T>, arg: T): void;
-  remove(): void {
+
+  protected remove(): void {
     this._observable.removeObserver(this);
   }
 }

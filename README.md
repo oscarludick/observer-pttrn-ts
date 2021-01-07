@@ -55,25 +55,25 @@ The Observable class will keep track of the observers and manage their registrat
 
 ```ts
 export abstract class Observable<T> {
-  observers: IObserver<T>[] = [];
-  changed: boolean = false;
+  private observers: Observer<T>[] = [];
+  private changed: boolean = false;
 
-  addObserver(observer: IObserver<T>): void {
+  addObserver(observer: Observer<T>): void {
     this.observers.push(observer);
   }
 
-  removeObserver(observer: IObserver<T>): void {
+  removeObserver(observer: Observer<T>): void {
     this.observers = this.observers.filter(mObserver => mObserver !== observer);
   }
 
-  notifyObservers(arg: T = null): void {
+  protected notifyObservers(arg: T = null): void {
     if (this.changed) {
       this.observers.forEach(observer => observer.update(this, arg));
       this.changed = false;
     }
   }
 
-  setChanged(): void {
+  protected setChanged(): void {
     this.changed = true;
   }
 }

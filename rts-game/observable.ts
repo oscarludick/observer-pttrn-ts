@@ -4,8 +4,8 @@ import { Observer } from "./observer";
  * Also known as Subject
  */
 export abstract class Observable<T> {
-  observers: Observer<T>[] = [];
-  changed: boolean = false;
+  private observers: Observer<T>[] = [];
+  private changed: boolean = false;
 
   addObserver(observer: Observer<T>): void {
     this.observers.push(observer);
@@ -15,14 +15,14 @@ export abstract class Observable<T> {
     this.observers = this.observers.filter(mObserver => mObserver !== observer);
   }
 
-  notifyObservers(arg: T = null): void {
+  protected notifyObservers(arg: T = null): void {
     if (this.changed) {
       this.observers.forEach(observer => observer.update(this, arg));
       this.changed = false;
     }
   }
 
-  setChanged(): void {
+  protected setChanged(): void {
     this.changed = true;
   }
 }

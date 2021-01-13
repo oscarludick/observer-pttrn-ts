@@ -104,7 +104,7 @@ export class SoldierUnit extends Observer<string> implements Unit {
 }
 ```
 
-The result
+The result.
 
 ```ts
 const player = new PlayerActions();

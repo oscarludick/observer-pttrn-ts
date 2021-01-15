@@ -3,7 +3,7 @@
 The following text was obtained from the book [Head First Desing Patterns](https://www.amazon.com/-/es/Eric-Freeman/dp/0596007124).
 
 
-### Desing principles
+### Design principles
 
 * Strive for loosely coupled designs between objects that interact.
 
